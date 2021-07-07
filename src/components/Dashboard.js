@@ -10,8 +10,8 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete'
 import Chart from './Chart'
 import Total from './Total'
-import AddCar from './AddCar'
- 
+import AddCar from '../containers/AddCar'
+
 const Dashboard = (props) => {
     return (
         <Container maxWidth="lg" className="car-container">
@@ -33,22 +33,22 @@ const Dashboard = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {props.cars.map((car, idx) => (
-                    <TableRow key={car.id}>
-                        <TableCell component="th" scope="row">
-                            {car.id}
-                        </TableCell>
-                        <TableCell>{car["name"]}</TableCell>
-                        <TableCell>{car["mpg"]}</TableCell>
-                        <TableCell>{car["cylinders"]}</TableCell>
-                        <TableCell>{car["horsepower"]}</TableCell>
-                        <TableCell>
-                            <DeleteIcon
-                                // add onClick method here
+                    {props.cars.map((car, idx) => (
+                        <TableRow key={car.id}>
+                            <TableCell component="th" scope="row">
+                                {car.id}
+                            </TableCell>
+                            <TableCell>{car["name"]}</TableCell>
+                            <TableCell>{car["mpg"]}</TableCell>
+                            <TableCell>{car["cylinders"]}</TableCell>
+                            <TableCell>{car["horsepower"]}</TableCell>
+                            <TableCell>
+                                <DeleteIcon
+                                    onClick= {() => props.removeCar(idx)}
                                 className="icon text-red" />
-                        </TableCell>
-                    </TableRow>
-                ))}
+                            </TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </Container>
